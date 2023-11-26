@@ -75,7 +75,7 @@ After completing this project, please push any changes you made to a publicly ac
 - [x] Task 2
   - Add sortable columns to grid
   - Add string and numeric filtering to corresponding columns
-- [ ] Task 3
+- [x] Task 3
   - Change format for date column
   - Add comparator to have date filter
 - [ ] Task 4
