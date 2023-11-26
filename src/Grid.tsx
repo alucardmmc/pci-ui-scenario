@@ -6,6 +6,7 @@ import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
 import gridDateFormatter from "./helpers/gridDateFormatter";
 import gridDateComparator from "./helpers/gridDateComparator";
+import gridYesNoValueGetter from "./helpers/gridYesNoValueGetter";
 
 const columnDefs: ColDef[] = [
   { field: "designation", headerName: "Designation" },
@@ -19,7 +20,11 @@ const columnDefs: ColDef[] = [
   { field: "q_au_2", headerName: "Q (au)", filter: 'agNumberColumnFilter' },
   { field: "period_yr", headerName: "Period (yr)", filter: 'agNumberColumnFilter' },
   { field: "i_deg", headerName: "Inclination (deg)", filter: 'agNumberColumnFilter' },
-  { field: "pha", headerName: "Potentially Hazardous" },
+  { 
+    field: "pha",
+    headerName: "Potentially Hazardous",
+    valueGetter: gridYesNoValueGetter,
+  },
   { field: "orbit_class", headerName: "Orbit Class", enableRowGroup: true, },
 ];
 

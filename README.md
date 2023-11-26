@@ -79,6 +79,7 @@ After completing this project, please push any changes you made to a publicly ac
   - Change format for date column
   - Add comparator to have date filter
 - [ ] Task 4
+  - Add value getter for 'pha' field. This way, filter also works
 - [ ] Task 5
 - [ ] Task 6
 - [ ] Task 7
