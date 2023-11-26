@@ -1,11 +1,13 @@
-import NeoGrid from './Grid';
+import { FC } from 'react';
 
-const App = () => {
-  return (
-      <>
-        <NeoGrid />
-      </>
-  );
-}
+import NeoGrid from './components/Grid/Grid';
+
+const App: FC = () => {
+    return (
+        <>
+            <NeoGrid />
+        </>
+    );
+};
 
 export default App;

@@ -1,6 +1,6 @@
-import { FC } from "react";
+import { FC } from 'react';
 
-import styles from './Title.module.css'
+import styles from './Title.module.css';
 
 interface TitleProps {
     text: string;
@@ -8,6 +8,6 @@ interface TitleProps {
 
 const Title: FC<TitleProps> = ({ text }) => (
     <h1 className={styles.title}>{text}</h1>
-)
+);
 
 export default Title;
