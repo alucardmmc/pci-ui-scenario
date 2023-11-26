@@ -4,10 +4,15 @@ import { ColDef } from "ag-grid-community";
 import data from "./near-earth-asteroids.json";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
+import gridDateFormatter from "./helpers/gridDateFormatter";
+import gridDateComparator from "./helpers/gridDateComparator";
 
 const columnDefs: ColDef[] = [
   { field: "designation", headerName: "Designation" },
-  { field: "discovery_date", headerName: "Discovery Date" },
+  { field: "discovery_date", headerName: "Discovery Date", filter: 'agDateColumnFilter', valueFormatter: gridDateFormatter, filterParams: {
+      comparator: gridDateComparator,
+    }, 
+  },
   { field: "h_mag", headerName: "H (mag)", filter: 'agNumberColumnFilter' },
   { field: "moid_au", headerName: "MOID (au)", filter: 'agNumberColumnFilter' },
   { field: "q_au_1", headerName: "q (au)", filter: 'agNumberColumnFilter' },
