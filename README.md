@@ -69,7 +69,7 @@ After completing this project, please push any changes you made to a publicly ac
 
 ### Changes
 
-- [ ] Task 1
+- [x] Task 1
   - Add title component
   - Change title in index.html. Could have also done it with document.title
 - [ ] Task 2
