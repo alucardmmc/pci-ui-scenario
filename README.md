@@ -83,6 +83,6 @@ After completing this project, please push any changes you made to a publicly ac
 - [x] Task 5
   - Add button to copy selected rows to clipboard. Text copied has format compatible with Excel.
   - *NOTE*: AG-Grid has a Clipboard functionality, but it's behind the enterprise version. Since I can't use it, I just made a workaround to still allow users to copy data from the table.
-- [ ] Task 6
+- [x] Task 6
   - Add button to clean grid from sort and filter.
 - [ ] Task 7
