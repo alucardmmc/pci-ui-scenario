@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo, useRef } from "react";
 import { AgGridReact } from "ag-grid-react";
 import { ColDef } from "ag-grid-community";
 import data from "./near-earth-asteroids.json";
@@ -7,6 +7,7 @@ import "ag-grid-community/styles/ag-theme-alpine.css";
 import gridDateFormatter from "./helpers/gridDateFormatter";
 import gridDateComparator from "./helpers/gridDateComparator";
 import gridYesNoValueGetter from "./helpers/gridYesNoValueGetter";
+import AsteroidData from "./types/asteroidData";
 
 const columnDefs: ColDef[] = [
   { field: "designation", headerName: "Designation" },
@@ -29,6 +30,7 @@ const columnDefs: ColDef[] = [
 ];
 
 const NeoGrid = (): JSX.Element => {
+  const gridRef: any = useRef();
   const defaultColDef = useMemo(() => {
     return {
       sortable: true,
@@ -36,15 +38,56 @@ const NeoGrid = (): JSX.Element => {
     };
   }, []);
 
+  const handleCopyRowsToClipboard = () => {
+    const copyData = gridRef.current.api.getSelectedRows();
+    const formattedData = copyData.map((row: any) => {
+      const completeRow: AsteroidData = {
+        designation: row.designation,
+        discovery_date: gridDateFormatter({ value: row.discovery_date }),
+        h_mag: row?.h_mag,
+        moid_au: row?.moid_au,
+        q_au_1: row?.q_au_1,
+        q_au_2: row?.q_au_2,
+        period_yr: row?.period_yr,
+        i_deg: row?.i_deg,
+        pha: gridYesNoValueGetter({ data: { pha: row.pha } }),
+        orbit_class: row.orbit_class,
+      }
+
+      return Object.values(completeRow).join('\t');
+    }).join('\n');
+
+    navigator.clipboard.writeText(formattedData)
+      .then(() => {})
+      .catch(error => {
+        console.error(error);
+      })
+  }
+
+  const handleDeselectRows = () => {
+    gridRef.current.api.deselectAll();
+  }
+
   return (
-    <div className="ag-theme-alpine" style={{ height: 900, width: 1920 }}>
-      <AgGridReact
-        defaultColDef={defaultColDef}
-        rowData={data}
-        columnDefs={columnDefs}
-        rowGroupPanelShow={'always'}
-      />
-    </div>
+    <>
+      <button onClick={handleCopyRowsToClipboard}>
+        Copy Selected Rows
+      </button>
+      <button onClick={handleDeselectRows}>
+        Deselect Rows
+      </button>
+      <div className="ag-theme-alpine" style={{ height: 900, width: 1920 }}>
+        <AgGridReact
+          ref={gridRef}
+          defaultColDef={defaultColDef}
+          rowData={data}
+          columnDefs={columnDefs}
+          rowGroupPanelShow={'always'}
+          rowMultiSelectWithClick={true}
+          rowSelection={'multiple'}
+        />
+      </div>
+    </>
   );
 };
 
