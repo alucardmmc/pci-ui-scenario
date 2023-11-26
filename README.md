@@ -80,7 +80,7 @@ After completing this project, please push any changes you made to a publicly ac
   - Add comparator to have date filter
 - [x] Task 4
   - Add value getter for 'pha' field. This way, filter also works
-- [ ] Task 5
+- [x] Task 5
   - Add button to copy selected rows to clipboard. Text copied has format compatible with Excel.
   - *NOTE*: AG-Grid has a Clipboard functionality, but it's behind the enterprise version. Since I can't use it, I just made a workaround to still allow users to copy data from the table.
 - [ ] Task 6
