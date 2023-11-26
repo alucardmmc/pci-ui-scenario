@@ -8,6 +8,9 @@ import gridDateFormatter from "./helpers/gridDateFormatter";
 import gridDateComparator from "./helpers/gridDateComparator";
 import gridYesNoValueGetter from "./helpers/gridYesNoValueGetter";
 import AsteroidData from "./types/asteroidData";
+import Title from "./components/Title/Title";
+
+import styles from './Grid.module.css'
 
 const columnDefs: ColDef[] = [
   { field: "designation", headerName: "Designation" },
@@ -64,17 +67,30 @@ const NeoGrid = (): JSX.Element => {
       })
   }
 
-  const handleDeselectRows = () => {
+  const handleClearSelectedRows = () => {
     gridRef.current.api.deselectAll();
+  }
+
+  const handleClearFilterAndSort = () => {
+    gridRef.current.api.setFilterModel(null);
+    gridRef.current.columnApi.applyColumnState({
+      defaultState: { sort: null },
+    })
   }
 
   return (
     <>
+      <div className={styles.top}>
+        <Title text='Near-Earth Object Overview' />
+        <button onClick={handleClearFilterAndSort}>
+          Clear Filters and Sorters
+        </button>
+      </div>
       <button onClick={handleCopyRowsToClipboard}>
         Copy Selected Rows
       </button>
-      <button onClick={handleDeselectRows}>
-        Deselect Rows
+      <button onClick={handleClearSelectedRows}>
+        Clear Selected Rows
       </button>
       <div className="ag-theme-alpine" style={{ height: 900, width: 1920 }}>
         <AgGridReact
