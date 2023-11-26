@@ -73,6 +73,8 @@ After completing this project, please push any changes you made to a publicly ac
   - Add title component
   - Change title in index.html. Could have also done it with document.title
 - [ ] Task 2
+  - Add sortable columns to grid
+  - Add string and numeric filtering to corresponding columns
 - [ ] Task 3
 - [ ] Task 4
 - [ ] Task 5
